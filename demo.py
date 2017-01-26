@@ -178,8 +178,3 @@ for image_path in listImgs:
 	S,T = utils.projectBackBFM(model,features)
 	print '> Writing 3D file in: ', outFile + '.ply'
 	utils.write_ply(outFile + '.ply', S, T, faces)
-
-
-
-
-
