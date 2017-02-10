@@ -22,7 +22,7 @@ This release is part of an on-going face recognition and modeling project. Pleas
 
 * [Dlib Python Wrapper](http://dlib.net/)
 * [OpenCV Python Wrapper](http://opencv.org/)
-* [Caffe](caffe.berkeleyvision.org) (version 1.0.0-rc3 or above required)
+* [Caffe](caffe.berkeleyvision.org) (**version 1.0.0-rc3 or above required**)
 * [Numpy](http://www.numpy.org/)
 * [Python2.7](https://www.python.org/download/releases/2.7/)
 
@@ -93,7 +93,7 @@ which should produce something similar to:
 
 If you find this work useful, please cite our paper [1] with the following bibtex:
 
-``` latex
+```latex
 @article{tran16_3dmm_cnn,
   title={Regressing Robust and Discriminative {3D} Morphable Models with a very Deep Neural Network},
   author={Anh Tran 
@@ -103,6 +103,27 @@ If you find this work useful, please cite our paper [1] with the following bibte
   journal={arXiv preprint},
   year={2016}
 }
+```
+
+## Troubleshooting
+
+### Problem: Old Caffe Engine ###
+
+```C++
+"F0210 10:49:17.604714 24046 net.cpp:797] Check failed:
+target_blobs.size() == source_layer.blobs_size() (5 vs. 3) Incompatible
+number of blobs for layer bn_conv1"
+```
+
+### Solution: install caffe 1.0.0-rc3 or above. ###
+For more info on caffe  verson please see https://github.com/BVLC/caffe/releases
+
+To check your caffe version from python:
+
+```python
+In [3]: import caffe
+In [4]: caffe.__version__
+Out[4]: '1.0.0-rc3'
 ```
 
 ## References
