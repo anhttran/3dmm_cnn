@@ -22,7 +22,7 @@ This release is part of an on-going face recognition and modeling project. Pleas
 
 * [Dlib Python Wrapper](http://dlib.net/)
 * [OpenCV Python Wrapper](http://opencv.org/)
-* [Caffe Python Wrapper](http://www.scipy.org/install.html)
+* [Caffe](caffe.berkeleyvision.org) (version 1.0.0-rc3 or above required)
 * [Numpy](http://www.numpy.org/)
 * [Python2.7](https://www.python.org/download/releases/2.7/)
 
