@@ -31,9 +31,11 @@ The code has been tested on Linux only. On Linux you can rely on the default ver
 ## Data requirements
 
 Before running the code, please, make sure to have all the required data in the following specific folder:
-- **[Download our CNN and the modified Basel Face Model](http://www.openu.ac.il/home/hassner/projects/CNN3DMM)** 
+- **[Download our CNN](http://www.openu.ac.il/home/hassner/projects/CNN3DMM)**
+- **[Download the Basel Face Model](http://faces.cs.unibas.ch/bfm/main.php?nav=1-2&id=downloads)** 
 - Move the CNN model (3 files: `3dmm_cnn_resnet_101.caffemodel`,`deploy_network.prototxt`,`mean.binaryproto`) into the `CNN` folder
-- Move  the Basel Face Model (`BaselFaceModel_mod.mat`) in the same folder of `demo.py` file.
+- Copy  the Basel Face Model (`01_MorphableModel.mat`) in the same folder of `demo.py` file.
+- Run the script `python trimBaselFace.py`. This should output a file `BaselFaceModel_mod.mat` and remove the original one automatically.
 - Download [dlib face prediction model](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2) and move the `.dat` file into the `dlib_model` folder.
 
 ## Usage
