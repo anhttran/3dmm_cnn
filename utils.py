@@ -92,12 +92,12 @@ def cropImg(img,tlx,tly,brx,bry, img2, rescale):
 	t = cy - tsize
 
 	# Approximate expanded bounding box
-	bl = round(cx - rescale[0]*tsize)
-	bt = round(cy - rescale[1]*tsize)
-	br = round(cx + rescale[2]*tsize)
-	bb = round(cy + rescale[3]*tsize)
-	nw = br-bl
-	nh = bb-bt
+	bl = int(round(cx - rescale[0]*tsize))
+	bt = int(round(cy - rescale[1]*tsize))
+	br = int(round(cx + rescale[2]*tsize))
+	bb = int(round(cy + rescale[3]*tsize))
+	nw = int(br-bl)
+	nh = int(bb-bt)
 	imcrop = np.zeros((nh,nw,3), dtype = "uint8")
 		        
 	ll = 0
