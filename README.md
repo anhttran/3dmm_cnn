@@ -95,14 +95,11 @@ which should produce something similar to:
 If you find this work useful, please cite our paper [1] with the following bibtex:
 
 ```latex
-@article{tran16_3dmm_cnn,
-  title={Regressing Robust and Discriminative {3D} Morphable Models with a very Deep Neural Network},
-  author={Anh Tran 
-      and Tal Hassner 
-      and Iacopo Masi
-      and G\'{e}rard Medioni}
-  journal={arXiv preprint},
-  year={2016}
+@inproceedings{tran2017regressing,
+  title={Regressing Robust and Discriminative 3D Morphable Models with a very Deep Neural Network},
+  author={Tran, Anh Tuan and Hassner, Tal and Masi, Iacopo and Medioni, Gerard},
+  booktitle={Computer Vision and Pattern Recognition (CVPR)},
+  year={2017}
 }
 ```
 
