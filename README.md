@@ -139,4 +139,4 @@ _The SOFTWARE PACKAGE provided in this page is provided "as is", without any gua
 
 ## Contacts
 
-If you have any questions, drop an email to _anhttran@usc.edu_ , _hassner@isi.edu_ and _iacopo.masi@usc.edu_  or leave a message below with GitHub (log-in is needed).
+If you have any questions, drop an email to _anhttran@usc.edu_ , _hassner@isi.edu_ and _iacopoma@usc.edu_  or leave a message below with GitHub (log-in is needed).
