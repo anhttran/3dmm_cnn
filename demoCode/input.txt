@@ -1,0 +1,17 @@
+data/1.jpg
+data/2.jpg
+data/Alfonso_Soriano_0001.jpg
+data/Anders_Fogh_Rasmussen_0004.jpg
+data/Brawley_King_0001.jpg
+data/Calbert_Cheaney_0001.jpg
+data/Demi_Moore_0001.jpg
+data/Jimmy_Carter_0001.jpg
+data/Kim_Jong-Il_0002.jpg
+data/Noah_Wyle_0003.jpg
+data/Paul_Celluci_0001.jpg
+data/Pervez_Musharraf_0016.jpg
+data/Salman_Khan_0001.jpg
+data/Silvia_Farina_Elia_0003.jpg
+data/Steve_Ballmer_0001.jpg
+data/Vince_Carter_0004.jpg
+data/Vitali_Klitschko_0004.jpg

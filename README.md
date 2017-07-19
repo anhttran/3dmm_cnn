@@ -1,11 +1,10 @@
-Python code for estimating 3DMM parameters using **[our very deep neural network](http://www.openu.ac.il/home/hassner/projects/CNN3DMM)**
+Python code for 3D face modeling from single image using **[our very deep neural network](http://www.openu.ac.il/home/hassner/projects/CNN3DMM)**
 ===========
+**_New_: Our code now supports face pose and expression fitting!**
 
-This page contains end-to-end demo code that estimates the 3D facial shape and texture directly from an unconstrained 2D face image. For a given input image, it produces a standard ply file of the face shape and texture. It accompanies the deep network described in our paper [1].
+This page contains end-to-end demo code that estimates the 3D facial shape and texture directly from an unconstrained 2D face image. For a given input image, it produces a standard ply file of the face shape and texture. It accompanies the deep network described in our paper [1]. We also include demo code of pose and expression fitting from landmarks in this release. 
 
 This release is part of an on-going face recognition and modeling project. Please, see **[this page](http://www.openu.ac.il/home/hassner/projects/CNN3DMM)** for updates and more data.
-
-**A new version of this code which includes also pose and expression fitting, is being prepared and will be released soon.**
 
 ![Teaser](http://www-bcf.usc.edu/~iacopoma/img/3dmm_code_teaser.png)
 
@@ -15,38 +14,75 @@ This release is part of an on-going face recognition and modeling project. Pleas
 * Designed and tested on **face images in unconstrained conditions**, including the challenging LFW, YTF and IJB-A benchmarks
 * The 3D face shape and texture parameters extracted using our network were **shown for the first time to be descriminative and robust**, providing near state of the art face recognition performance with 3DMM representations on these benchmarks
 * **No expensive, iterative optimization, inner loops** to regress the shape. 3DMM fitting is therefore extremely fast
+* Extra code for **head pose and expression estimation from detected facial landmarks**, with the use of the regressed 3D face model
 
 ## Dependencies
 
 ## Library requirements
 
-* [Dlib Python Wrapper](http://dlib.net/)
-* [OpenCV Python Wrapper](http://opencv.org/)
+* [Dlib Python and C++ library](http://dlib.net/)
+* [OpenCV Python and C++ library](http://opencv.org/)
 * [Caffe](caffe.berkeleyvision.org) (**version 1.0.0-rc3 or above required**)
 * [Numpy](http://www.numpy.org/)
 * [Python2.7](https://www.python.org/download/releases/2.7/)
 
-The code has been tested on Linux only. On Linux you can rely on the default version of python, installing all the packages needed from the package manager or on Anaconda Python and install required packages through `conda`. A bit more effort is required to install caffé.
+The code has been tested on Linux only. On Linux you can rely on the default version of python, installing all the packages needed from the package manager or on Anaconda Python and install required packages through `conda`. A bit more effort is required to install caffé, dlib, and libhdf5.
 
 ## Data requirements
 
 Before running the code, please, make sure to have all the required data in the following specific folder:
-- **[Download our CNN](http://www.openu.ac.il/home/hassner/projects/CNN3DMM)**
-- **[Download the Basel Face Model](http://faces.cs.unibas.ch/bfm/main.php?nav=1-2&id=downloads)** 
+- **[Download our CNN](http://www.openu.ac.il/home/hassner/projects/CNN3DMM)** and move the CNN model (3 files: `3dmm_cnn_resnet_101.caffemodel`,`deploy_network.prototxt`,`mean.binaryproto`) into the `CNN` folder
+- **[Download the Basel Face Model](http://faces.cs.unibas.ch/bfm/main.php?nav=1-2&id=downloads)** and move `01_MorphableModel.mat` into the `3DMM_model` folder
+- **[Acquire 3DDFA Expression Model](http://www.cbsr.ia.ac.cn/users/xiangyuzhu/projects/3DDFA/Code/3DDFA.zip)**, run its code to generate `Model_Expression.mat` and move this file the `3DMM_model` folder
+- Go into `3DMM_model` folder. Run the script `python trimBaselFace.py`. This should output 2 files `BaselFaceModel_mod.mat` and `BaselFaceModel_mod.h5`.
 - **[Download dlib face prediction model](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2)** and move the `.dat` file into the `dlib_model` folder.
-- Move the CNN model (3 files: `3dmm_cnn_resnet_101.caffemodel`,`deploy_network.prototxt`,`mean.binaryproto`) into the `CNN` folder
-- Copy  the Basel Face Model (`01_MorphableModel.mat`) in the same folder of `demo.py` file.
-- Run the script `python trimBaselFace.py`. This should output a file `BaselFaceModel_mod.mat` and remove the original one automatically.
 
+## Installation (pose & expression fitting code)
+
+- Install **cmake**: 
+```
+	apt-get install cmake
+```
+- Install **opencv** (2.4.6 or higher is recommended):
+```
+	(http://docs.opencv.org/doc/tutorials/introduction/linux_install/linux_install.html)
+```
+- Install **libboost** (1.5 or higher is recommended):
+```
+	apt-get install libboost-all-dev
+```
+- Install **OpenGL, freeglut, and glew**
+```
+	sudo apt-get install freeglut3-dev
+	sudo apt-get install libglew-dev
+```
+- Install **libhdf5-dev** library
+```
+	sudo apt-get install libhdf5-dev
+```
+- Install **Dlib C++ library**
+```
+	(http://dlib.net/)
+```
+- Update Dlib directory paths (`DLIB_INCLUDE_DIR` and `DLIB_LIB_DIR`) in `CMakeLists.txt`
+- Make build directory (temporary). Make & install to bin folder
+```
+	mkdir build
+	cd build
+	cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=../bin ..
+	make
+	make install
+```
+  This code should generate `TestVisualization` in `bin` folder
 
 ## Usage
 
-### Input
+### 3DMM fitting on a set of input images
 
-The demo script can be used from the command line with the following syntax:
+* Go into `demoCode` folder. The demo script can be used from the command line with the following syntax:
 
 ```bash
-$ Usage: python demo.py <inputList> <outputDir> <needCrop> <useLM>
+$ Usage: python testBatchModel.py <inputList> <outputDir> <needCrop> <useLM>
 ```
 
 where the parameters are the following:
@@ -62,11 +98,10 @@ data/2.jpg
 ....
 </pre>
 
-### Output
-The demo code should produce an output similar to this:
+* The demo code should produce an output similar to this:
 
 ```bash
-user@system:~/Desktop/3dmm_release$ python demo.py input.txt out/
+user@system:~/Desktop/3dmm_release$ python testBatchModel.py input.txt out/
 > Prepare image data/1.jpg:
 >     Number of faces detected: 1
 > Prepare image data/2.jpg:
@@ -89,6 +124,47 @@ The final 3D shape and texture can be displayed using standard off-the-shelf 3D 
 which should produce something similar to:
 
 ![Teaser](http://www-bcf.usc.edu/~iacopoma/img/meshlab_disp.png)
+
+
+### 3D Face modeling + pose & expression estimation on a single input image
+
+* Go into `demoCode` folder. The demo script can be used from the command line with the following syntax:
+
+```bash
+$ Usage: python testModel_PoseExpr.py <outputDir> <save3D>
+```
+
+where the parameters are the following:
+- `<outputDir>` is the path to the output directory, where 3DMM (and ply) files are stored.
+- `<save3D>` is an option to save the ply file (1) or not (0). Default 1.
+
+* The program will pop up a dialog to select an input image. Then it will estimate 3DMM paramters (with the CNN model), estimate pose+expression and visualize the result (with C++ program)
+
+Example:
+```bash
+user@system:~/Desktop/3dmm_release$ python testModel_PoseExpr.py out/
+(Select `Anders_Fogh_Rasmussen_0004.jpg`)
+> Prepare image /home/anh/Downloads/PoseExprFromLM-master/demoCode/data/Anders_Fogh_Rasmussen_0004.jpg:
+    Number of faces detected: 1
+> CNN Model loaded to regress 3D Shape and Texture!
+> Loaded the Basel Face Model to write the 3D output!
+*****************************************
+** Caffe loading    : 1.007 s
+** Image cropping   : 0.069 s
+** 3D Modeling      : 1.145 s
+*****************************************
+> Writing 3D file in:  out/Anders_Fogh_Rasmussen_0004.ply
+> Pose & expression estimation
+load ../3DMM_model/BaselFaceModel_mod.h5
+** Pose+expr fitting: 0.153 s
+** Visualization    : 0.052 s
+*****************************************
+```
+
+The pop up window should look similar to:
+![Teaser](https://sites.google.com/site/anhttranusc/PoseExpr_Demo.png)
+
+
 
 ## Citation
 
