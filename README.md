@@ -1,6 +1,6 @@
 Python code for 3D face modeling from single image using **[our very deep neural network](http://www.openu.ac.il/home/hassner/projects/CNN3DMM)**
 ===========
-**_New_: Our code now supports face pose and expression fitting!**
+**_New_: Please see our follow up project for [deep pose and 3D expression fitting](https://github.com/fengju514/Expression-Net).**
 
 This page contains end-to-end demo code that estimates the 3D facial shape and texture directly from an unconstrained 2D face image. For a given input image, it produces a standard ply file of the face shape and texture. It accompanies the deep network described in our paper [1]. We also include demo code of pose and expression fitting from landmarks in this release. 
 
