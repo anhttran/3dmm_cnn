@@ -209,6 +209,9 @@ Out[4]: '1.0.0-rc3'
 ## Changelog
 - Jan 2017, First Release 
 
+## License
+Please, see [the LICENSE here](LICENSE.txt)
+
 ## Disclaimer
 
 _The SOFTWARE PACKAGE provided in this page is provided "as is", without any guarantee made as to its suitability or fitness for any particular use. It may contain bugs, so use of this tool is at your own risk. We take no responsibility for any damage of any sort that may unintentionally be caused through its use._
