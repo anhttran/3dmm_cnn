@@ -28,6 +28,9 @@ This release is part of an on-going face recognition and modeling project. Pleas
 
 The code has been tested on Linux only. On Linux you can rely on the default version of python, installing all the packages needed from the package manager or on Anaconda Python and install required packages through `conda`. A bit more effort is required to install caffé, dlib, and libhdf5.
 
+## Automatic Install of the Dependencies 
+Check this [useful script on the wiki](https://github.com/anhttran/3dmm_cnn/wiki/Installation-Script) by [seva100](https://github.com/seva100)
+
 ## Data requirements
 
 Before running the code, please, make sure to have all the required data in the following specific folder:
