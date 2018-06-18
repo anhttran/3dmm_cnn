@@ -63,7 +63,7 @@ Before running the code, please, make sure to have all the required data in the 
 ```
 	sudo apt-get install libhdf5-dev
 ```
-- Install **Dlib C++ library**
+- Install **Dlib C++ library**. Dlib should be compiled to shared objects. Check the comments in its CMakeList.txt.
 ```
 	(http://dlib.net/)
 ```
