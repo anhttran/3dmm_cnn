@@ -1,5 +1,6 @@
 /* Copyright (c) 2015 USC, IRIS, Computer vision Lab */
 #include "RenderModel.h"
+#include <opencv2/calib3d.hpp>
 
 // Given 3D shape(Vx3) and triangle connectivity (Fx3), estimates vertex normals (Vx3)
 bool RenderServices::estimateVertexNormals(cv::Mat shape, cv::Mat faces, cv::Mat &normals){
