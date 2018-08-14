@@ -1,7 +1,7 @@
 /* Copyright (c) 2015 USC, IRIS, Computer vision Lab */
 #include "FaceServices2.h"
 #include <fstream>
-#include "opencv2/contrib/contrib.hpp"
+#include <opencv2/calib3d.hpp>
 #include <Eigen/SparseLU>
 //#include <Eigen/SPQRSupport>
 #include <omp.h>

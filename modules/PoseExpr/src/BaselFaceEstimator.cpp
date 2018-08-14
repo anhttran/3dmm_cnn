@@ -4,6 +4,7 @@
 #include "utility.h"
 #include "epnp.h"
 #include <vector>
+#include <opencv2/calib3d.hpp>
 
 using namespace cv;
 

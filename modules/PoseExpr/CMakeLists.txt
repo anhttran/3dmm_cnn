@@ -1,5 +1,6 @@
 # Local libraries
 include_directories(../CvGl)
+include_directories(/usr/include/hdf5/serial)
 include_directories(include)
 include_directories(${DLIB_INCLUDE_DIR})
 add_definitions(-std=c++11)

@@ -1,5 +1,6 @@
 #include "DlibWrapper.h"
 #include <iostream>
+#include <opencv2/imgproc.hpp>
 
 using namespace dlib;
 using namespace std;
